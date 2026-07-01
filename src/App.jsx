@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { fetchWords } from "./words";
+import { useState, useEffect } from "react";
 
 // ── 상수 ──────────────────────────────────────────────
 const THEME_GROUPS = [
@@ -33,18 +33,30 @@ const triBar = (
 // ── TTS ───────────────────────────────────────────────
 let audioPlayer = null;
 function speakFrench(text) {
-  try {
-    if (audioPlayer) { audioPlayer.pause(); audioPlayer = null; }
-    const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(text)}&tl=fr&client=tw-ob`;
-    audioPlayer = new Audio(url);
-    audioPlayer.play().catch(() => {
-      if (!window.speechSynthesis) return;
-      window.speechSynthesis.cancel();
-      const utt = new SpeechSynthesisUtterance(text);
-      utt.lang = "fr-FR"; utt.rate = 0.9;
-      window.speechSynthesis.speak(utt);
-    });
-  } catch (e) {}
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  
+  const trySpeak = () => {
+    const voices = window.speechSynthesis.getVoices();
+    const frVoice = 
+      voices.find(v => v.lang === "fr-FR" && v.name.includes("Google")) ||
+      voices.find(v => v.lang === "fr-FR") ||
+      voices.find(v => v.lang.startsWith("fr"));
+    
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = "fr-FR";
+    utt.rate = 0.85;
+    utt.pitch = 1;
+    if (frVoice) utt.voice = frVoice;
+    window.speechSynthesis.speak(utt);
+  };
+
+  // voices가 아직 로딩 안 됐을 때 대비
+  if (window.speechSynthesis.getVoices().length === 0) {
+    window.speechSynthesis.onvoiceschanged = trySpeak;
+  } else {
+    trySpeak();
+  }
 }
 
 // ── 유틸 ──────────────────────────────────────────────
