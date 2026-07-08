@@ -108,7 +108,6 @@ const THEME_GROUPS = {
     { label: "🌿 환경", themes: ["L'environnement"] },
     { label: "🛍 소비", themes: ["La consommation"] },
     { label: "🏠 주거", themes: ["Le logement"] },
-    { label: "🛋 가구 & 도시", themes: ["Le mobilier", "La ville"] },
     { label: "🍽 음식 & 요리", themes: ["Les aliments"] },
   ],
   ja: [
@@ -119,7 +118,6 @@ const THEME_GROUPS = {
     { label: "🌿 環境", themes: ["L'environnement"] },
     { label: "🛍 消費", themes: ["La consommation"] },
     { label: "🏠 住居", themes: ["Le logement"] },
-    { label: "🛋 家具・街", themes: ["Le mobilier", "La ville"] },
     { label: "🍽 食べ物・料理", themes: ["Les aliments"] },
   ],
   zh: [
@@ -130,7 +128,6 @@ const THEME_GROUPS = {
     { label: "🌿 环境", themes: ["L'environnement"] },
     { label: "🛍 消费", themes: ["La consommation"] },
     { label: "🏠 住宅", themes: ["Le logement"] },
-    { label: "🛋 家具与城市", themes: ["Le mobilier", "La ville"] },
     { label: "🍽 食物与烹饪", themes: ["Les aliments"] },
   ],
   en: [
@@ -141,7 +138,6 @@ const THEME_GROUPS = {
     { label: "🌿 Environment", themes: ["L'environnement"] },
     { label: "🛍 Consumption", themes: ["La consommation"] },
     { label: "🏠 Housing", themes: ["Le logement"] },
-    { label: "🛋 Furniture & City", themes: ["Le mobilier", "La ville"] },
     { label: "🍽 Food & Cooking", themes: ["Les aliments"] },
   ],
 };
