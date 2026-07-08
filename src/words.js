@@ -6,10 +6,9 @@ export async function fetchWords() {
   const res = await fetch(url);
   const text = await res.text();
 
-  const rows = text.trim().split("\n").slice(1); // 헤더 제외
+  const rows = text.trim().split("\n").slice(1);
   return rows
     .map(row => {
-      // 쉼표로 분리 (따옴표 안의 쉼표는 무시)
       const cols = [];
       let cur = "", inQuote = false;
       for (const ch of row) {
@@ -18,8 +17,8 @@ export async function fetchWords() {
         else cur += ch;
       }
       cols.push(cur.trim());
-      const [fr, ko, theme] = cols;
-      return { fr, ko, theme };
+      const [fr, ko, ja, zh, en, theme, example_fr, example_ko, example_ja, example_zh, example_en] = cols;
+      return { fr, ko, ja, zh, en, theme, example_fr, example_ko, example_ja, example_zh, example_en };
     })
-    .filter(w => w.fr && w.ko && w.theme);
+    .filter(w => w.fr && w.theme);
 }
